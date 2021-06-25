@@ -5,23 +5,6 @@
 {% endblock %}
 
 {% block content %}
-    <p >
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul>
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
-    </p>
-
-    {% if filename %}
-	<div>
-		<img src="{{ url_for('display_image', filename=filename) }}" height="300" >
-	</div>
-    {% endif %}
 
     <form method="post" action="/" enctype="multipart/form-data">
         <dl>
@@ -30,9 +13,29 @@
             </p>
         </dl>
         <p>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Analyze">
         </p>
     </form>
+    <p >
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+            
+          {% endif %}
+        {% endwith %}
+    </p>
+
+    {% if filename %}
+	<div>
+		<img src="{{ url_for('display_image', filename=filename) }}" height="256" >
+	</div>
+    
+    {% endif %}
+
+    
 
     {% if filename %}
     <h3>Results: </h3>
