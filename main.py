@@ -39,10 +39,9 @@ def upload_image():
 	if file and allowed_file(file.filename):
 		filename = secure_filename(file.filename)
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-		#print('upload_image filename: ' + filename)
+		
 		flash('Image successfully uploaded and displayed below')
-        #text = food_model(UPLOAD_FOLDER+filename)
-		return render_template('home.html', filename=filename)
+		return render_template('home.html', filename=filename, text = food_model(UPLOAD_FOLDER+filename))
 	else:
 		flash('Allowed image types are -> png, jpg, jpeg, gif')
 		return redirect(request.url)
@@ -51,7 +50,9 @@ def upload_image():
 def display_image(filename):
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
-
+#@app.route('/analysis/<filename>')
+#def image_analysis(filename):
+ #   return render_template('home.html', filename=filename, test = test(filename)) 
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)

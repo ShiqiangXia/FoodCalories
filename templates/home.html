@@ -5,9 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    This is our content for the Home Page
-
-    <p>
+    <p >
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             <ul>
@@ -36,9 +34,10 @@
         </p>
     </form>
 
-    {% if text %}
+    {% if filename %}
+    <h3>Results: </h3>
 	<p>
-        {{text}}
+        {{text|safe}}
     </p>
     {% endif %}
 

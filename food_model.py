@@ -22,39 +22,45 @@ def food_model(file_path, max_concept=5):
 
         output = IR.Food_Image_Analysis(file_path,stub,metadata)
 
-        print('What I see in the picture ')
-        for ii in range(max_concept):
-            print('%d. %s, %.1f%%'%(ii+1, output[ii]['name'], output[ii]['value']*100))
+        output_text = 'What I see in the picture<br />'
 
+        for ii in range(max_concept):
+            output_text +='%d. %s, %.1f%%<br />'%(ii+1, output[ii]['name'], output[ii]['value']*100)
+            
         #--------- Predict dish -----------
         predict = IR.food_dish_detetion(headers, file_path)
         pred_food_name = predict['name']
-        print('---'*10)
-        print('Therefore, I predict the dish is')
-        print('[ %s ] with prob  %.1f%%'%(pred_food_name, predict['prob']*100))
+        output_text += '---'*10
+        output_text += '<br />Therefore, I predict the dish is<br />'
+        output_text += '[ %s ] with prob  %.1f%%<br />'%(pred_food_name, predict['prob']*100)
+        
 
         if predict['subclasses']:
-            print('Possible sub dishes: ')
+            
+            output_text += 'Possible sub dishes: <br />'
             for item in predict['subclasses']:
                 if item['prob']>0.1:
-                    print('  * %s with prob %.1f%%'%(item['name'], item['prob']*100))
-
+                    output_text += '  * %s with prob %.1f%%<br />'%(item['name'], item['prob']*100)
+                    
         #--------- Get Nutrition Facts -----------
         pred_food_nutritio = FC.find_food_nutrition(fs, pred_food_name)
 
-        print('---'*10)
-        print('Here is the nutrition I found for this food: ')
-
-        pred_food_nutritio[0].show_nutrition_facts()
-
-        #return(pred_food_name, pred_food_nutritio)
-        return('Food %s'%pred_food_name)
+        output_text += '---'*10
+        output_text += '<br />Here is the nutrition I found for this food: <br />'
+       
+        output_text += 'Name: %s<br />'%pred_food_nutritio[0].name
+        output_text += '1 serving: %.2f g<br />'%pred_food_nutritio[0].serving_amount
+        output_text += 'Calorie: %.2f cal <br />Carbs: %.2f g <br />Fat: %.2f g <br />Protein: %.2f g'\
+             %(pred_food_nutritio[0].cal, pred_food_nutritio[0].carb, pred_food_nutritio[0].fat, pred_food_nutritio[0].protein)
+        return(output_text)
     else :
-        print('There seems no food in the image')
-        print('Here are the [concepts] what I see:')
+        
+        output_text = 'There seems no food in the image <br />'
+        output_text += 'Here are the [concepts] what I see:<br />'
         for ii in range(max_concept):
-            print('%d. %s  ' %(ii+1, general_out[ii]))
-        return('no food')
+            output_text += '%d. %s  <br />' %(ii+1, general_out[ii])
+            
+        return(output_text)
         
 
 
