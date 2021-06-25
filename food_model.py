@@ -57,7 +57,7 @@ def food_model(file_path, max_concept=5):
         
         output_text = 'There seems no food in the image <br />'
         output_text += 'Here are the [concepts] what I see:<br />'
-        for ii in range(max_concept):
+        for ii in range(max_concept+5):
             output_text += '%d. %s  <br />' %(ii+1, general_out[ii])
             
         return(output_text)
