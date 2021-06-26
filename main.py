@@ -40,8 +40,8 @@ def upload_image():
 		filename = secure_filename(file.filename)
 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 		
-		flash('Image successfully uploaded and displayed below')
-		return render_template('home.html', filename=filename, text = food_model(UPLOAD_FOLDER+filename))
+		flash('Image is uploaded and displayed below.')
+		return render_template('home.html', filename=filename, text = food_model(UPLOAD_FOLDER+filename)) #food_model
 	else:
 		flash('Allowed image types are -> png, jpg, jpeg, gif')
 		return redirect(request.url)
