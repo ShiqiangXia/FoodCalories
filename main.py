@@ -23,10 +23,6 @@ def allowed_file(filename):
 def index():
     return render_template('home.html')
 
-@app.route("/about")
-def about():
-    return "Something about!"
-
 @app.route('/', methods=['POST'])
 def upload_image():
 	if 'file' not in request.files:
