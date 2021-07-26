@@ -12,4 +12,6 @@ It is built with [Flask](https://flask.palletsprojects.com/en/2.0.x/) and deploy
 ![](./img/2.JPG)
 
 ## Example 2
+![](./img/4.png)
+![](./img/5.JPG)
 
