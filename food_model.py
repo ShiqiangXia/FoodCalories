@@ -20,18 +20,12 @@ def food_model(file_path, max_concept=5):
 
     if 'food' in general_out:
 
-        output = IR.Food_Image_Analysis(file_path,stub,metadata)
-
-        output_text = 'What I see in the picture<br />'
-
-        for ii in range(max_concept):
-            output_text +='%d. %s, %.1f%%<br />'%(ii+1, output[ii]['name'], output[ii]['value']*100)
-            
+       
         #--------- Predict dish -----------
         predict = IR.food_dish_detetion(headers, file_path)
         pred_food_name = predict['name']
-        output_text += '---'*10
-        output_text += '<br />Therefore, I predict the dish is<br />'
+        output_text = '---'*10
+        output_text += '<br />Predict Food: <br />'
         output_text += '[ %s ] with prob  %.1f%%<br />'%(pred_food_name, predict['prob']*100)
         
 
@@ -41,7 +35,16 @@ def food_model(file_path, max_concept=5):
             for item in predict['subclasses']:
                 if item['prob']>0.1:
                     output_text += '  * %s with prob %.1f%%<br />'%(item['name'], item['prob']*100)
-                    
+
+        output_text += '---'*10
+        #---------- Concepts -----------
+        output = IR.Food_Image_Analysis(file_path,stub,metadata)
+
+        output_text += '<br />What I see in the picture<br />'
+
+        for ii in range(max_concept):
+            output_text +='%d. %s, %.1f%%<br />'%(ii+1, output[ii]['name'], output[ii]['value']*100)
+                     
         #--------- Get Nutrition Facts -----------
         pred_food_nutritio = FC.find_food_nutrition(fs, pred_food_name)
 
