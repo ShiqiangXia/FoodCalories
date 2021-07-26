@@ -19,7 +19,8 @@ def set_up_api():
 
     #Logmeal
     #api_user_token = '8f70f86c217f00acf23db4ce097cda0d8c45887d'
-    api_user_token = 'db9d236a25ed6ecd43b3db799d3117c66a927500'
+    #api_user_token = 'db9d236a25ed6ecd43b3db799d3117c66a927500'
+    api_user_token = '9c0076b6af0e87c1604721ada43930e4875deb58'
     headers = {'Authorization': 'Bearer ' + api_user_token}
 
 

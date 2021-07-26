@@ -4,7 +4,7 @@ This web app
 * analyzes the food in the uploaded picture and 
 * reports the nutrition facts of the food. 
 
-It is built with [Flask](https://flask.palletsprojects.com/en/2.0.x/) and deployed on Google App Engine. You can test it [here](). 
+It is built with [Flask](https://flask.palletsprojects.com/en/2.0.x/) and deployed on Heroku. You can test it [here](). 
 
 
 ## Example 1
