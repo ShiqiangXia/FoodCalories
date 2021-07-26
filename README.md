@@ -8,8 +8,8 @@ It is built with [Flask](https://flask.palletsprojects.com/en/2.0.x/) and deploy
 
 
 ## Example 1
-![](./img/2.PNG)
-![](./img/1.JPG)
+![](./img/1.png)
+![](./img/2.JPG)
 
 ## Example 2
 
