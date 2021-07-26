@@ -1,8 +1,8 @@
 
-import food_calorie as FC # food nutrition data 
-import image_model as IR # analyze image and recognize food
+import scr.food_calorie as FC # food nutrition data 
+import scr.image_model as IR # analyze image and recognize food
 
-from get_APIs import * 
+from scr.get_APIs import * 
 
 import requests
 

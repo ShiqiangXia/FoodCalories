@@ -3,8 +3,7 @@ import os
 from flask import flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-from test_module import test
-from food_model import food_model
+from scr.food_model import food_model
 
 UPLOAD_FOLDER = 'static/uploads/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
